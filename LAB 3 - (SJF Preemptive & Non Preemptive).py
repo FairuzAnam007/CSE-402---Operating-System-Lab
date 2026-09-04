@@ -100,8 +100,8 @@ while len(F) < len(processes):
 
     F.append(p)
 
-sjf_avgwt = E / 5
-sjf_avgtat = G / 5
+sjf_avgwt = E / 4
+sjf_avgtat = G / 4
 
 print("Avg WT =", sjf_avgwt)
 print("Avg TAT =", sjf_avgtat)
