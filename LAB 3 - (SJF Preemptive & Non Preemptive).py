@@ -1,3 +1,5 @@
+##-------SJF PREEMPTIVE-------
+print ("SJF PREEMPTIVE")
 processes = [
     ["P1", 0, 4],
     ["P2", 1, 2],
@@ -48,6 +50,58 @@ while len(done) < len(processes):
 
 sjf_avgwt = E / 4
 sjf_avgtat = G / 4
+
+print("Avg WT =", sjf_avgwt)
+print("Avg TAT =", sjf_avgtat)
+
+##-------SJF NON - PREEMPTIVE-------
+
+print ("\nSJF NON - PREEMPTIVE")
+processes = [
+    ["P1", 0, 4],
+    ["P2", 1, 2],
+    ["P3", 3, 2],
+    ["P4", 2, 1]
+]
+
+D = 0
+E = 0
+G = 0
+F = []
+print ("PID AT  BT  CT  TAT WT")
+while len(F) < len(processes):
+
+    ready = []
+
+    for p in processes:
+        if p[1] <= D and p not in F:
+            ready.append(p)
+
+    if len(ready) == 0:
+        D += 1
+        continue
+
+    ready.sort(key=lambda p: p[2])
+    p = ready[0]
+
+    pid = p[0]
+    at = p[1]
+    bt = p[2]
+
+    ct = D + bt
+    tat = ct - at
+    wt = tat - bt
+
+    print(pid, at, bt, ct, tat, wt , sep="\t")
+
+    D = ct
+    E += wt
+    G += tat
+
+    F.append(p)
+
+sjf_avgwt = E / 5
+sjf_avgtat = G / 5
 
 print("Avg WT =", sjf_avgwt)
 print("Avg TAT =", sjf_avgtat)
