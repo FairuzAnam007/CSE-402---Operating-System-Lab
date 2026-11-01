@@ -1,0 +1,42 @@
+print ("FCFS")
+data = [0,30,41,62,14,20]
+head = 20
+total = 0
+if head in data:
+    data.remove(head)
+for r in data:
+    total+=abs (r - head)
+    print (head, "---->" , r)
+    head = r
+
+
+print ("Total FCFS = " , total)
+
+print ("\n")
+
+print ("SSTF")
+data = [0,30,41,62,14,20]
+head = 20
+s_total = 0
+
+while data:
+    closest = data [0]
+    for r in data:
+        if abs (r - head ) < abs (closest - head):
+            closest = r
+
+    s_total += abs (closest - head)
+    print(head, "---->", closest)
+    head = closest
+    data.remove(closest)
+
+print ("Total SSTF = " , s_total)
+
+print ("\n")
+
+if s_total < total:
+    print ("SSTF Better")
+elif  s_total > total:
+    print ("FCFS Better")
+else:
+    print ("Both Same")
