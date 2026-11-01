@@ -1,10 +1,10 @@
 print ("PRIORITY NON - PREEMPTIVE")
-
 processes = [
-    ["P1", 0, 3, 4],
-    ["P2", 3, 2, 0],
-    ["P3", 1, 2, 2],
-    ["P4", 2, 1, 1]
+    ["P1", 3, 4, 2],
+    ["P2", 0, 4, 0],
+    ["P3", 2, 3, 1],
+    ["P4", 1, 6, 1],
+    ["P5", 4, 2, 3],
 ]
 
 time = 0
@@ -26,7 +26,7 @@ while len(done) < len(processes):
         time += 1
         continue
 
-    ready.sort(key=lambda x: x[3])
+    ready.sort(key=lambda x: x[1])
     p = ready[0]
 
     pid = p[0]
@@ -48,7 +48,6 @@ while len(done) < len(processes):
 
 print("Average WT =", t_wt / len(processes))
 print("Average TAT =", t_tat / len(processes))
-
 
 print ("\n")
 
@@ -84,7 +83,7 @@ while len(done) < len(processes):
         continue
 
 
-    ready.sort(key=lambda p:p[1])
+    ready.sort(key=lambda p:p[3])
     p = ready[0]
 
     remain[p[0]] -= 1
@@ -116,7 +115,6 @@ print("Avg TAT =", priority_avgtat)
 print ("\n")
 
 print ("PRIORITY PREEMPTIVE REVERSE")
-
 processes = [
     ["P1", 3, 4, 2],
     ["P2", 0, 4, 0],
